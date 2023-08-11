@@ -58,11 +58,10 @@ nav {
   align-items: center;
   padding: 50px;
 }
-
 /*  */
 /*  */
 /*  */
-/*    MAIN SECTION    */
+/*  MAIN SECTIOn  */
 .shop {
   display: flex;
   flex-direction: column;
@@ -71,31 +70,159 @@ nav {
 
 main {
   display: flex;
+  justify-content: space-evenly;
   gap: 15px;
-  width: 70%;
+  max-width: 1400px;
+  width: 90%;
   margin: 40px;
 }
+/*  */
+/*  */
+/*  */
+/*    FILTER SECTION    */
 
 .filter-div {
-  background-color: cadetblue;
   width: 15%;
   display: flex;
+  padding: 20px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 20px;
+  height: fit-content;
+  position: sticky;
+  top: 0;
 }
 
 .search-products {
   width: 100%;
-}
-
-.products-div {
-  width: 85%;
-  background-color: coral;
+  border: none;
+  background-color: #f1f5f8;
+  padding: 10px;
+  border-radius: 6px;
 }
 
 .categories {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   flex-direction: column;
+}
+
+.colors-div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+}
+
+.color-button-all {
+  border: none;
+  background-color: white;
+  border: 2px solid white;
+  text-align: left;
+  width: fit-content;
+  cursor: pointer;
+  color: #43505c;
+  font-size: medium;
+}
+
+.color-button {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.red {
+  background-color: #ff0000;
+}
+.green {
+  background-color: #00ff00;
+}
+.yellow {
+  background-color: #ffb900;
+}
+.blue {
+  background-color: #0000ff;
+}
+.black {
+  background-color: #000;
+}
+
+.checkbox {
+  display: none;
+}
+
+.active-color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  color: white;
+}
+
+.active-color-all {
+  border-bottom: 2px solid rgb(175, 170, 170);
+}
+
+.category-button {
+  border: none;
+  background-color: white;
+  border: 2px solid white;
+  text-align: left;
+  width: fit-content;
+  cursor: pointer;
+  color: #43505c;
+}
+
+.active-category {
+  border-bottom: 2px solid rgb(175, 170, 170);
+}
+
+.free-shipping {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.range-div,
+.company-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*  PRODUCTS SECTION */
+
+.products-div {
+  width: 70%;
+  background-color: coral;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 20px;
+  gap: 20px;
+}
+
+.product {
+  overflow: hidden;
+}
+
+.product-thumbnail {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+}
+
+.name-and-price-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
