@@ -202,9 +202,11 @@ main {
 /*  */
 /*  PRODUCTS SECTION */
 
-.products-div {
+.products-and-order {
   width: 70%;
-  background-color: coral;
+}
+
+.products-div {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 20px;
@@ -226,3 +228,7 @@ main {
   justify-content: space-between;
   align-items: center;
 }
+/*  */
+/*  */
+/*  */
+/* PRODUCT DETAILS */

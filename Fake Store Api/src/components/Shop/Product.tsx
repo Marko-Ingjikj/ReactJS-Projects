@@ -13,12 +13,16 @@ const Product = ({
   category: string;
   image: string;
 }) => {
+  function capitalizeWords(str: string) {
+    return str.replace(/\b\w/g, (match) => match.toUpperCase());
+  }
+
   return (
     <div className="product">
       <Link to={`/${id}`}>
         <img src={image} alt="" className="product-thumbnail" />
         <div className="name-and-price-div">
-          <p>{name}</p>
+          <p>{capitalizeWords(name)}</p>
           <p>$ {price / 100}</p>
         </div>
       </Link>

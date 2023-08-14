@@ -26,12 +26,10 @@ const Shop = () => {
   const [activeColorFilter, setActiveColorFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [companyFilter, setCompanyFilter] = useState("");
-  const [priceFilter, setPriceFilter] = useState("3000");
+  const [priceFilter, setPriceFilter] = useState("3100");
   const [searchFilter, setSearchFilter] = useState("");
   const [colorFilter, setColorFilter] = useState("");
   const [freeShippingFilter, setFreeShippingFilter] = useState(false);
-
-  console.log(products);
 
   // Populating products in store
   useEffect(() => {
@@ -59,7 +57,8 @@ const Shop = () => {
       !colorFilter &&
       !searchFilter &&
       !companyFilter &&
-      priceFilter == "3000"
+      !freeShippingFilter &&
+      priceFilter == "3100"
     ) {
       return products; // No filters applied, return all products
     } else {
@@ -90,9 +89,14 @@ const Shop = () => {
             product.name.toLowerCase().includes(searchFilter.toLowerCase())
         );
       }
-      if (freeShippingFilter) {
+      if (freeShippingFilter === true) {
         filteringProductsConst = filteringProductsConst.filter(
-          (product: Product) => product.shipping
+          (product: Product) => product.shipping === true
+        );
+      }
+      if (priceFilter !== "3100") {
+        filteringProductsConst = filteringProductsConst.filter(
+          (product: Product) => product.price / 100 <= parseInt(priceFilter, 10)
         );
       }
       return filteringProductsConst;
@@ -104,6 +108,7 @@ const Shop = () => {
     categoryFilter,
     searchFilter,
     colorFilter,
+    freeShippingFilter,
   ]);
 
   return (
@@ -319,7 +324,7 @@ const Shop = () => {
               name=""
               id=""
               min={0}
-              max={3000}
+              max={3100}
               value={priceFilter}
               onChange={(e) => setPriceFilter(e.target.value)}
             />
@@ -336,17 +341,20 @@ const Shop = () => {
           </div>
         </div>
 
-        <div className="products-div">
-          {filteredProducts.map((product: Product) => (
-            <Product
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              price={product.price}
-              category={product.category}
-              image={product.image}
-            />
-          ))}
+        <div className="products-and-order">
+          <hr />
+          <div className="products-div">
+            {filteredProducts.map((product: Product) => (
+              <Product
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={product.price}
+                category={product.category}
+                image={product.image}
+              />
+            ))}
+          </div>
         </div>
       </main>
     </div>
