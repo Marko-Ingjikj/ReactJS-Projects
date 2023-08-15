@@ -232,3 +232,33 @@ main {
 /*  */
 /*  */
 /* PRODUCT DETAILS */
+.product-details-page {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.back-button-text {
+  color: white;
+  transition: 0.3s linear;
+  font-size: medium;
+  font-weight: 200;
+}
+
+.back-button {
+  background-color: #ab7a5f;
+  transition: 0.3s linear;
+  padding: 8px;
+  border-radius: 6px;
+  width: 180px;
+  text-align: center;
+}
+
+.back-button:hover {
+  background-color: #b89582;
+}
+.back-button:hover .back-button-text {
+  color: black;
+}
