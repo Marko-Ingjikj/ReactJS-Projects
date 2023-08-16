@@ -318,7 +318,7 @@ const Shop = () => {
             <p>
               <b>Price</b>
             </p>
-            <p>$ {priceFilter}</p>
+            <p>$ {Number(priceFilter).toLocaleString("en-US")}</p>
             <input
               type="range"
               name=""
