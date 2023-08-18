@@ -42,7 +42,10 @@ const Header = () => {
   return (
     <div className="header">
       <h1>
-        <Link to={"/"}>Home</Link> / {capitalizeWords(product.name)}
+        <Link className="header-link" to={"/"}>
+          Home
+        </Link>{" "}
+        / {capitalizeWords(product.name)}
       </h1>
     </div>
   );
