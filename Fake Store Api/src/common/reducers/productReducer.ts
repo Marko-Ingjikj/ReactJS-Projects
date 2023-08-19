@@ -1,7 +1,8 @@
-import { FETCH_DATA } from "../const/actions.const";
+import { ADD_TO_CART, FETCH_DATA } from "../const/actions.const";
 
 const initialState = {
   products: [],
+  cart: [],
 };
 
 const productReducer = (state = initialState, action: any) => {
@@ -10,6 +11,12 @@ const productReducer = (state = initialState, action: any) => {
       return {
         ...state,
         products: action.payload,
+      };
+
+    case ADD_TO_CART:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
       };
 
     default:

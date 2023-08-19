@@ -4,7 +4,6 @@ const Product = ({
   id,
   name,
   price,
-  category,
   image,
 }: {
   id: string;

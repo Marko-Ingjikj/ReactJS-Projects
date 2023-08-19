@@ -4,11 +4,13 @@ const Nav = () => {
   return (
     <nav>
       <div className="logo-div">
-        <img
-          src="https://blogs.perficient.com/files/5f493b167e5dc864a0265b30_json-logo.png"
-          alt=""
-          className="logo-img"
-        />
+        <Link to={"/"}>
+          <img
+            src="https://blogs.perficient.com/files/5f493b167e5dc864a0265b30_json-logo.png"
+            alt=""
+            className="logo-img"
+          />
+        </Link>
       </div>
 
       <div className="nav-links">

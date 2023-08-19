@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Rating } from "react-simple-star-rating";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../common/actions/actions";
 
 interface Product {
   id: string;
@@ -19,8 +21,14 @@ interface Product {
 }
 
 const ProductDetailsText = () => {
+  const dispatch = useDispatch();
+
   const [productQuantity, setProductQuantity] = useState(1);
   const [activeColorFilter, setActiveColorFIlter] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
+  const [productStock, setProductStock] = useState(0);
+  const [productShipping, setProductShipping] = useState(false);
 
   const { id } = useParams();
 
@@ -47,8 +55,27 @@ const ProductDetailsText = () => {
   }, []);
 
   useEffect(() => {
+    console.log(product);
     setActiveColorFIlter(product.colors[0]);
+    setProductName(product.name);
+    setProductPrice(product.price);
+    setProductStock(product.stock);
+    setProductShipping(product.shipping);
   }, [product]);
+
+  const onSubmit = () => {
+    dispatch(
+      addToCart({
+        id,
+        name: productName,
+        color: activeColorFilter,
+        quantity: productQuantity,
+        price: productPrice,
+        stock: productStock,
+        shipping: productShipping,
+      })
+    );
+  };
 
   const checkColor = (color: string) => {
     if (color == "#000") {
@@ -156,7 +183,9 @@ const ProductDetailsText = () => {
           </button>
         </div>
         <div>
-          <button className="add-to-cart-btn">ADD TO CART</button>
+          <button className="add-to-cart-btn" onClick={() => onSubmit()}>
+            ADD TO CART
+          </button>
         </div>
       </div>
     </div>

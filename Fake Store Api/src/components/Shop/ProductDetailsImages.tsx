@@ -19,7 +19,6 @@ interface Product {
 
 const ProductDetailsImages = () => {
   const { id } = useParams();
-  console.log(id);
 
   const [product, setProduct] = useState<Product>({
     id: "",

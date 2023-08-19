@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 interface Product {
   id: string;
@@ -16,6 +16,7 @@ interface Product {
 
 const Header = () => {
   const { id } = useParams();
+  const location = useLocation();
 
   const [product, setProduct] = useState<Product>({
     id: "",
@@ -30,9 +31,11 @@ const Header = () => {
   });
 
   useEffect(() => {
-    axios
-      .get(`https://course-api.com/react-store-single-product?id=${id}`)
-      .then((response) => setProduct(response.data));
+    if (id) {
+      axios
+        .get(`https://course-api.com/react-store-single-product?id=${id}`)
+        .then((response) => setProduct(response.data));
+    }
   }, []);
 
   function capitalizeWords(str: string) {
@@ -44,8 +47,11 @@ const Header = () => {
       <h1>
         <Link className="header-link" to={"/"}>
           Home
-        </Link>{" "}
-        / {capitalizeWords(product.name)}
+        </Link>
+        <span> / </span>
+        {id
+          ? capitalizeWords(product.name)
+          : capitalizeWords(location.pathname.replace("/", ""))}
       </h1>
     </div>
   );
