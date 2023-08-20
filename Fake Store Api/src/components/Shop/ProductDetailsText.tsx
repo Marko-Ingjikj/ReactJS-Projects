@@ -63,10 +63,6 @@ const ProductDetailsText = () => {
       setProductStock(product.stock);
       setProductShipping(product.shipping);
       setProductImage(product.images[0].url);
-
-      console.log(product);
-
-      console.log(product.stock);
     }
   }, [product]);
 

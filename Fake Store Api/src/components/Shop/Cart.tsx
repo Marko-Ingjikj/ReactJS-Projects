@@ -3,6 +3,7 @@ import CartItem from "./CartItem";
 import Header from "./Header";
 import { clearCart } from "../../common/actions/actions";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface CartItem {
   id: string;
@@ -18,6 +19,16 @@ interface CartItem {
 const Cart = () => {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: any) => state.shop);
+  const [subtotal, setSubtotal] = useState(0);
+
+  useEffect(() => {
+    let subtotal = cart.reduce(
+      (total: any, item: any) => total + item.quantity * item.price,
+      0
+    );
+
+    setSubtotal(subtotal);
+  }, [cart]);
 
   return (
     <>
@@ -67,7 +78,8 @@ const Cart = () => {
             <div className="cart-total-price">
               <div className="fee-subtotal-div">
                 <div className="cart-total-div bold">
-                  <span>Subtotal:</span> <span>100$</span>
+                  <span>Subtotal:</span>{" "}
+                  <span>$ {(subtotal / 100).toLocaleString("en-US")}</span>
                 </div>
                 <div className="cart-total-div">
                   <span>Shipping Fee:</span>

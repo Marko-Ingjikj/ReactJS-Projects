@@ -4,6 +4,7 @@ import Layout from "../../components/Layout/Layout";
 import Shop from "../../components/Shop/Shop";
 import ProductDetails from "../../components/Shop/ProductDetails";
 import Cart from "../../components/Shop/Cart";
+import Account from "../../components/Shop/Account";
 
 const GeneralRoutes = {
   path: "/",
@@ -20,6 +21,10 @@ const GeneralRoutes = {
     {
       path: "/cart",
       element: <Cart />,
+    },
+    {
+      path: "/account",
+      element: <Account />,
     },
     {
       path: "/about",
