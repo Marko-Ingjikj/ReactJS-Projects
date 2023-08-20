@@ -408,7 +408,8 @@ main {
   text-align: center;
 }
 
-.add-to-cart-btn {
+.add-to-cart-btn,
+.fill-it-btn {
   background-color: #ab7a5f;
   transition: 0.3s linear;
   padding: 8px;
@@ -424,7 +425,8 @@ main {
   font-family: "Inter";
 }
 
-.add-to-cart-btn:hover {
+.add-to-cart-btn:hover,
+.fill-it-btn:hover {
   color: black;
   background-color: #b89582;
 }
@@ -435,10 +437,27 @@ main {
   justify-content: center;
   width: fit-content;
 }
+
+.in-stock {
+  color: lawngreen;
+}
+
+.not-in-stock {
+  color: crimson;
+}
 /*  */
 /*  */
 /*  */
 /* CART SECTION */
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 20px;
+}
 
 .cart {
   display: flex;
@@ -616,7 +635,6 @@ main {
 .cart-item-color-chosen {
   width: 12px;
   height: 12px;
-  background-color: #000;
   border-radius: 4px;
 }
 
@@ -624,4 +642,15 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.cart-item-name {
+  text-align: left;
+  font-size: large;
+}
+
+.fill-it-btn {
+  width: fit-content;
+  padding: 6px 20px;
+  font-size: 16px;
 }

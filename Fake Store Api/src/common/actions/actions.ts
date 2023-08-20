@@ -1,4 +1,9 @@
-import { ADD_TO_CART, FETCH_DATA } from "../const/actions.const";
+import {
+  ADD_TO_CART,
+  CLEAR_CART,
+  FETCH_DATA,
+  REMOVE_FROM_CART,
+} from "../const/actions.const";
 
 export const fetchData = (data: Array<object>) => {
   return {
@@ -11,5 +16,18 @@ export const addToCart = (data: object) => {
   return {
     type: ADD_TO_CART,
     payload: data,
+  };
+};
+
+export const removeFromCart = (data: string) => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: data,
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART,
   };
 };

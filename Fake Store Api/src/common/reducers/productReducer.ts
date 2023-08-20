@@ -1,4 +1,9 @@
-import { ADD_TO_CART, FETCH_DATA } from "../const/actions.const";
+import {
+  ADD_TO_CART,
+  CLEAR_CART,
+  FETCH_DATA,
+  REMOVE_FROM_CART,
+} from "../const/actions.const";
 
 const initialState = {
   products: [],
@@ -17,6 +22,18 @@ const productReducer = (state = initialState, action: any) => {
       return {
         ...state,
         cart: [...state.cart, action.payload],
+      };
+
+    case REMOVE_FROM_CART:
+      return {
+        ...state,
+        cart: state.cart.filter((item: any) => item.id != action.payload),
+      };
+
+    case CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
       };
 
     default:

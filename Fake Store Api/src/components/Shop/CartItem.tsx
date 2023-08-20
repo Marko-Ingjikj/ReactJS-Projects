@@ -1,34 +1,93 @@
-const CartItem = (id: any, name: any, price: any, stock: any) => {
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../common/actions/actions";
+
+const CartItem = ({
+  id,
+  name,
+  price,
+  stock,
+  image,
+  quantity,
+  color,
+}: {
+  id: string;
+  name: string;
+  price: number;
+  stock: number;
+  image: string;
+  quantity: number;
+  color: string;
+}) => {
+  const dispatch = useDispatch();
+
+  const [productQuantity, setProductQuantity] = useState(quantity);
+
+  function capitalizeWords(str: string) {
+    return str.replace(/\b\w/g, (match) => match.toUpperCase());
+  }
+
+  const checkColor = (color: string) => {
+    if (color == "#000") {
+      return "black";
+    }
+    if (color == "##00ff00") {
+      return "green";
+    }
+    if (color == "##ffb900") {
+      return "yellow";
+    }
+    if (color == "#0000ff") {
+      return "blue";
+    }
+    if (color == "#ff0000") {
+      return "red";
+    } else {
+      return "black";
+    }
+  };
+
   return (
     <div className="cart-item-details">
       <div className="cart-item-div cart-div">
         <div className="cart-item-image-div">
-          <img
-            src="https://www.course-api.com/images/store/product-12.jpeg"
-            alt=""
-            className="cart-item-image"
-          />
+          <img src={image} alt="" className="cart-item-image" />
         </div>
         <div className="cart-item-text">
-          <p className="cart-item-name bold">Cart Item</p>
+          <p className="cart-item-name bold">{capitalizeWords(name)}</p>
           <div className="cart-item-color">
             <span>Color:</span>
-            <div className="cart-item-color-chosen"></div>
+            <div
+              className={`cart-item-color-chosen ${checkColor(color)}`}></div>
           </div>
         </div>
       </div>
       <p className="cart-price-p cart-div" id="cart-price">
-        100$
+        $ {(price / 100).toLocaleString("en-US")}
       </p>
       <div className="cart-quantity-div cart-div">
         <div className="quantity-item-div">
-          <button className="quantity-button smaller-font-size">-</button>
-          <span className="quantity-span">1</span>
-          <button className="quantity-button smaller-font-size">+</button>
+          <button
+            className="quantity-button smaller-font-size"
+            onClick={() => setProductQuantity(productQuantity - 1)}
+            disabled={productQuantity == 1}>
+            -
+          </button>
+          <span className="quantity-span">{productQuantity}</span>
+          <button
+            className="quantity-button smaller-font-size"
+            onClick={() => setProductQuantity(productQuantity + 1)}
+            disabled={productQuantity == stock}>
+            +
+          </button>
         </div>
       </div>
-      <p className="cart-subtotal-p cart-div">100$</p>
-      <button className="cart-remove-item">
+      <p className="cart-subtotal-p cart-div">
+        $ {((price / 100) * productQuantity).toLocaleString("en-US")}
+      </p>
+      <button
+        className="cart-remove-item"
+        onClick={() => dispatch(removeFromCart(id))}>
         <svg
           stroke="currentColor"
           fill="currentColor"

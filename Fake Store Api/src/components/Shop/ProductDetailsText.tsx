@@ -29,6 +29,7 @@ const ProductDetailsText = () => {
   const [productPrice, setProductPrice] = useState(0);
   const [productStock, setProductStock] = useState(0);
   const [productShipping, setProductShipping] = useState(false);
+  const [productImage, setProductImage] = useState("");
 
   const { id } = useParams();
 
@@ -55,12 +56,18 @@ const ProductDetailsText = () => {
   }, []);
 
   useEffect(() => {
-    console.log(product);
-    setActiveColorFIlter(product.colors[0]);
-    setProductName(product.name);
-    setProductPrice(product.price);
-    setProductStock(product.stock);
-    setProductShipping(product.shipping);
+    if (product.images.length !== 0) {
+      setActiveColorFIlter(product.colors[0]);
+      setProductName(product.name);
+      setProductPrice(product.price);
+      setProductStock(product.stock);
+      setProductShipping(product.shipping);
+      setProductImage(product.images[0].url);
+
+      console.log(product);
+
+      console.log(product.stock);
+    }
   }, [product]);
 
   const onSubmit = () => {
@@ -73,6 +80,7 @@ const ProductDetailsText = () => {
         price: productPrice,
         stock: productStock,
         shipping: productShipping,
+        image: productImage,
       })
     );
   };
@@ -125,7 +133,11 @@ const ProductDetailsText = () => {
         <p className="product-p">
           <span className="product-span">Avaiable:</span>
           <span className="product-availability">
-            {product.stock > 0 ? `In stock` : "Not in stock"}
+            {product.stock > 0 ? (
+              <p className="in-stock">In Stock</p>
+            ) : (
+              <p className="not-in-stock">Not In Stock</p>
+            )}
           </span>
         </p>
         <p className="product-p">
@@ -138,56 +150,62 @@ const ProductDetailsText = () => {
         </p>
       </div>
       <hr />
-      <div className="product-colors">
-        <p className="product-color-p">Colors:</p>
-        <div className="product-details-color-picker">
-          {product.colors.map((color): any => (
-            <button
-              className={`color-button-product-details ${checkColor(color)} ${
-                activeColorFilter == `${color}` ? "active-color" : ""
-              }`}
-              key={color}
-              onClick={() => setActiveColorFIlter(color)}>
-              <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth="0"
-                viewBox="0 0 1024 1024"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                className={`checkbox ${
-                  activeColorFilter == `${color}` ? "active-color" : ""
-                }`}>
-                <path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path>
-              </svg>
-            </button>
-          ))}
-        </div>
-        <div className="product-color-picker"></div>
-      </div>
-      <div className="product-add-to-cart">
-        <div className="add-quantity">
-          <button
-            onClick={() => setProductQuantity(productQuantity - 1)}
-            disabled={productQuantity == 1}
-            className="quantity-button">
-            -
-          </button>
-          <span className="quantity-span">{productQuantity}</span>
-          <button
-            onClick={() => setProductQuantity(productQuantity + 1)}
-            disabled={product.stock == productQuantity}
-            className="quantity-button">
-            +
-          </button>
-        </div>
+
+      {product.stock !== 0 && (
         <div>
-          <button className="add-to-cart-btn" onClick={() => onSubmit()}>
-            ADD TO CART
-          </button>
+          {" "}
+          <div className="product-colors">
+            <p className="product-color-p">Colors:</p>
+            <div className="product-details-color-picker">
+              {product.colors.map((color): any => (
+                <button
+                  className={`color-button-product-details ${checkColor(
+                    color
+                  )} ${activeColorFilter == `${color}` ? "active-color" : ""}`}
+                  key={color}
+                  onClick={() => setActiveColorFIlter(color)}>
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 1024 1024"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`checkbox ${
+                      activeColorFilter == `${color}` ? "active-color" : ""
+                    }`}>
+                    <path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path>
+                  </svg>
+                </button>
+              ))}
+            </div>
+            <div className="product-color-picker"></div>
+          </div>
+          <div className="product-add-to-cart">
+            <div className="add-quantity">
+              <button
+                onClick={() => setProductQuantity(productQuantity - 1)}
+                disabled={productQuantity == 1}
+                className="quantity-button">
+                -
+              </button>
+              <span className="quantity-span">{productQuantity}</span>
+              <button
+                onClick={() => setProductQuantity(productQuantity + 1)}
+                disabled={product.stock == productQuantity}
+                className="quantity-button">
+                +
+              </button>
+            </div>
+            <div>
+              <button className="add-to-cart-btn" onClick={() => onSubmit()}>
+                ADD TO CART
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
