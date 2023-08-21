@@ -5,7 +5,7 @@ const Account = () => {
     <div>
       <Header />
 
-      <div className="mainn">
+      <div className="main">
         <div className="content">
           <div className="text">Sign Up</div>
           <form action="#">
@@ -47,7 +47,7 @@ const Account = () => {
             <div className="sign-up-with">
               <div className="google sign-up-div">
                 <img
-                  src="./images/Google__G__Logo.svg.png"
+                  src="src\images\Google__G__Logo.svg.png"
                   alt=""
                   className="sign-up-logo"
                 />
@@ -55,7 +55,7 @@ const Account = () => {
               </div>
               <div className="facebook sign-up-div">
                 <img
-                  src="./images/facebooksvg.png"
+                  src="src\images\facebooksvg.png"
                   alt=""
                   className="sign-up-logo"
                 />
@@ -63,7 +63,7 @@ const Account = () => {
               </div>
               <div className="apple sign-up-div">
                 <img
-                  src="./images/Apple_logo_black.svg.png"
+                  src="src\images\Apple_logo_black.svg.png"
                   alt=""
                   className="sign-up-logo"
                 />

@@ -22,7 +22,9 @@ const Product = ({
         <img src={image} alt="" className="product-thumbnail" />
         <div className="name-and-price-div">
           <p>{capitalizeWords(name)}</p>
-          <p>$ {(price / 100).toLocaleString("en-US")}</p>
+          <p className="product-item-price">
+            $ {(price / 100).toLocaleString("en-US")}
+          </p>
         </div>
       </Link>
     </div>

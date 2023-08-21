@@ -64,9 +64,9 @@ const Cart = () => {
             ))}
 
             <div className="continue-or-discard-shopping">
-              <button className="continue-shopping-btn">
+              <Link to={"/"} className="continue-shopping-btn">
                 Continue Shopping
-              </button>
+              </Link>
               <button
                 className="clear-cart-btn"
                 onClick={() => dispatch(clearCart())}>

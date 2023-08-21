@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+  const { cart } = useSelector((state: any) => state.shop);
+
   return (
     <nav>
       <div className="logo-div">
@@ -14,14 +17,21 @@ const Nav = () => {
       </div>
 
       <div className="nav-links">
-        <Link to={"/"}>Home</Link>
-        <Link to={"/about"}>About</Link>
-        <Link to={"/contact"}>Contact</Link>
+        <Link className="nav-link" to={"/"}>
+          Home
+        </Link>
+        <Link className="nav-link" to={"/about"}>
+          About
+        </Link>
+        <Link className="nav-link" to={"/contact"}>
+          Contact
+        </Link>
       </div>
 
       <div className="cart-and-account">
-        <Link className="cart-and-account-link" to={"/cart"}>
+        <Link className="cart-and-account-link cart-link" to={"/cart"}>
           Cart
+          <span className="number-of-items">{cart.length}</span>
           <svg
             stroke="currentColor"
             fill="currentColor"

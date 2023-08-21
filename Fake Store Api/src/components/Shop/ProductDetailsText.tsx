@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Rating } from "react-simple-star-rating";
@@ -195,9 +195,12 @@ const ProductDetailsText = () => {
               </button>
             </div>
             <div>
-              <button className="add-to-cart-btn" onClick={() => onSubmit()}>
+              <Link
+                to={"/cart"}
+                className="add-to-cart-btn"
+                onClick={() => onSubmit()}>
                 ADD TO CART
-              </button>
+              </Link>
             </div>
           </div>
         </div>
